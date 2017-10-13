@@ -1,8 +1,9 @@
 (function(window, document) {
 
+    // Start Code Execution Timer
     console.time("timer");
 
-    // Setting Vars
+    // Vars For Error Reporting
     var _error_message = "(none)",
         _empty_tag = "(no text)";
 
@@ -21,15 +22,12 @@
         _filteredText = getFilteredText(_rawText),
         _filteredWordCount = getWordCount(_filteredText).toLocaleString(),
         _hostname = getHostname(),
-        _pathname = getPathname();
-
-    console.log(_firstH1);
-
-    // getPhrases(filteredText, 1, true, true);
-    // getPhrases(filteredText, 2, true, true);
-    // getPhrases(filteredText, 3, true, true);
-    // getPhrases(filteredText, 4, true, true);
-    // getPhrases(filteredText, 5, true, true);
+        _pathname = getPathname(),
+        _keywords = getPhrases(_filteredText, 1, true, true),
+        _2WordPhrases = getPhrases(_filteredText, 2, true, true),
+        _3WordPhrases = getPhrases(_filteredText, 3, true, true),
+        _4WordPhrases = getPhrases(_filteredText, 4, true, true),
+        _5WordPhrases = getPhrases(_filteredText, 5, true, true);
 
     chrome.runtime.sendMessage({
 
@@ -68,13 +66,15 @@
         chrome.storage.local.set({ 'filteredText': _filteredText });
         chrome.storage.local.set({ 'filteredWordCount': _filteredWordCount });
         chrome.storage.local.set({ 'hostname': _hostname });
+        chrome.storage.local.set({ 'keywords': _keywords });
+        chrome.storage.local.set({ '_2WordPhrases': _2WordPhrases });
+        chrome.storage.local.set({ '_3WordPhrases': _3WordPhrases });
+        chrome.storage.local.set({ '_4WordPhrases': _4WordPhrases });
+        chrome.storage.local.set({ '_5WordPhrases': _5WordPhrases });
         chrome.storage.local.set({ 'pathname': _pathname }, function() {
-            //Debug Prints All Local Storage in JSON Format
+            // This Debug Closure Prints All Local Storage in JSON Format
             //chrome.storage.local.get(function(result) { console.log(result) });
         });
-
-
-
 
     });
 
@@ -271,7 +271,7 @@
 
         while (_node = walk.nextNode()) {
 
-            // Filter out script and style nodes 
+            // Filter out script and style nodes
             if (_node.parentNode.nodeName.toString() === "SCRIPT" || _node.parentNode.nodeName.toString() === "STYLE") {
                 continue;
             }
@@ -279,7 +279,7 @@
             // Replace &nbsp; with spaces
             s = _node.data.replace(/\u00a0/g, " ").trim();
 
-            // Push the node text on to the array 
+            // Push the node text on to the array
             if (s.length > 0) {
                 a.push(s);
             }
@@ -297,7 +297,7 @@
 
     function getPhrases(str, phraseLength, sortByWords, ascending) {
 
-        // This function gets the keyword and N-word phrase counts 
+        // This function gets the keyword and N-word phrase counts
 
         function makeArray(aDictionary) {
 
@@ -328,7 +328,7 @@
 
                 count++;
 
-                // Check to see if the word has changed 
+                // Check to see if the word has changed
                 if (currentStr !== lastStr) {
 
                     // Save the word/phrase and count
@@ -342,7 +342,7 @@
 
             }
 
-            // Return sorted array 
+            // Return sorted array
             return arr.sort(fnSortByValueDesc);
 
         }
@@ -368,7 +368,7 @@
             }
         }
 
-        return makeArray(aDictionary);
+        return JSON.stringify(makeArray(aDictionary));
 
     }
 

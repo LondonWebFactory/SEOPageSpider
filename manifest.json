@@ -3,7 +3,7 @@
 
     "name": "SEO Page Spider",
     "description": "This extension adds SEO tools to Google Chrome.",
-    "version": "0.0.0.4",
+    "version": "0.1.0",
 
     "browser_action": {
         "default_icon": "images/icon19.png",
