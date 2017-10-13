@@ -1,0 +1,179 @@
+body {
+    width: 768px;
+    height: 1200px;
+    padding: 0 12px;
+}
+
+.logo {
+    margin: 8px 0 24px 0;
+}
+
+.span-result {
+    font-weight: 600;
+}
+
+.sps_result {
+    font-weight: 600;
+}
+
+.primary {
+    color: #428bca;
+}
+
+.success {
+    color: #5cb85c;
+}
+
+.info {
+    color: #5bc0de;
+}
+
+.warning {
+    color: #d9534f;
+}
+
+.danger {
+    color: #d9534f;
+}
+
+.gray {
+    color: #444;
+}
+
+.result {
+    color: #000;
+    font-weight: bold;
+}
+
+.result-title {
+    color: #666;
+}
+
+.metro_data {
+    color: #fff;
+    text-align: right;
+}
+
+.metro_data p {
+    font-size: 34px;
+}
+
+.metro_data h3 {
+    font-size: 16px;
+}
+
+.metro_data a {
+    color: #fff;
+    display: block;
+    padding: 9px 15px;
+    margin: 0 -15px;
+    background-color: rgba(0, 0, 0, 0.20);
+}
+
+.bg-blue {
+    background-color: #428bca;
+}
+
+.bg-green {
+    background-color: #5cb85c;
+}
+
+.bg-light-blue {
+    background-color: #5bc0de;
+}
+
+.bg-yellow {
+    background-color: #f0ad4e;
+}
+
+.bg-red {
+    background-color: #d9534f;
+}
+
+.bg-light-grey {
+    background-color: #F7F7F9;
+}
+
+.sps-callout {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-left-color: #999;
+    border-radius: 3px;
+}
+
+.sps-callout hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+}
+
+.sps-callout h4 {
+    margin-top: 0;
+    margin-bottom: 18px;
+}
+
+.sps-callout h6 {
+    font-size: 13px;
+}
+
+.sps-callout p:last-child {
+    margin-bottom: 0;
+}
+
+.sps-callout code {
+    border-radius: 3px;
+}
+
+.sps-callout+.sps-callout {
+    margin-top: -5px;
+}
+
+.sps-callout-default {
+    border-left-color: #777;
+}
+
+.sps-callout-default h4 {
+    color: #777;
+}
+
+.sps-callout-primary {
+    border-left-color: #428bca;
+}
+
+.sps-callout-primary h4 {
+    color: #428bca;
+}
+
+.sps-callout-success {
+    border-left-color: #5cb85c;
+}
+
+.sps-callout-success h4 {
+    color: #5cb85c;
+}
+
+.sps-callout-danger {
+    border-left-color: #d9534f;
+}
+
+.sps-callout-danger h4 {
+    color: #d9534f;
+}
+
+.sps-callout-warning {
+    border-left-color: #f0ad4e;
+}
+
+.sps-callout-warning h4 {
+    color: #f0ad4e;
+}
+
+.sps-callout-info {
+    border-left-color: #5bc0de;
+}
+
+.sps-callout-info h4 {
+    color: #5bc0de;
+}
