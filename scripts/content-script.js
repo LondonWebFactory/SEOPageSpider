@@ -5,7 +5,8 @@
 
     // Vars For Error Reporting
     var _error_message = "(none)",
-        _empty_tag = "(no text)";
+        _empty_tag = "(no text)",
+        _phraseCount = 10;
 
     // Data Vars
     var _title = getPageTitle(),
@@ -23,11 +24,11 @@
         _filteredWordCount = getWordCount(_filteredText).toLocaleString(),
         _hostname = getHostname(),
         _pathname = getPathname(),
-        _keywords = getPhrases(_filteredText, 1, true, true),
-        _2WordPhrases = getPhrases(_filteredText, 2, true, true),
-        _3WordPhrases = getPhrases(_filteredText, 3, true, true),
-        _4WordPhrases = getPhrases(_filteredText, 4, true, true),
-        _5WordPhrases = getPhrases(_filteredText, 5, true, true);
+        _keywords = getPhrases(_filteredText, 1, true, true, _phraseCount),
+        _2WordPhrases = getPhrases(_filteredText, 2, true, true, _phraseCount),
+        _3WordPhrases = getPhrases(_filteredText, 3, true, true, _phraseCount),
+        _4WordPhrases = getPhrases(_filteredText, 4, true, true, _phraseCount),
+        _5WordPhrases = getPhrases(_filteredText, 5, true, true, _phraseCount);
 
     chrome.runtime.sendMessage({
 
@@ -72,8 +73,8 @@
         chrome.storage.local.set({ '_4WordPhrases': _4WordPhrases });
         chrome.storage.local.set({ '_5WordPhrases': _5WordPhrases });
         chrome.storage.local.set({ 'pathname': _pathname }, function() {
-            // This Debug Closure Prints All Local Storage in JSON Format
-            //chrome.storage.local.get(function(result) { console.log(result) });
+            // This Closure Prints All Local Storage in JSON Format
+            chrome.storage.local.get(function(result) { console.log(result) });
         });
 
     });
@@ -295,7 +296,7 @@
         return rawText.replace(/[^a-z ]/gi, " ").replace(/\s\s+/g, ' ').toLowerCase().trim();
     }
 
-    function getPhrases(str, phraseLength, sortByWords, ascending) {
+    function getPhrases(str, phraseLength, sortByWords, ascending, phraseCount) {
 
         // This function gets the keyword and N-word phrase counts
 
@@ -368,7 +369,7 @@
             }
         }
 
-        return JSON.stringify(makeArray(aDictionary));
+        return JSON.stringify(makeArray(aDictionary).slice(0,phraseCount));
 
     }
 
